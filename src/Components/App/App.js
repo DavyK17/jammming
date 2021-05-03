@@ -13,7 +13,7 @@ export class App extends React.Component {
           <div class="App">
               <SearchBar />
               <div class="App-playlist">
-              <SearchResults />
+              <SearchResults results={this.state.searchResults} />
               <Playlist />
               </div>
           </div>
