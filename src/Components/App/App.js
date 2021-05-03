@@ -34,9 +34,9 @@ class App extends React.Component {
 
   removeTrack(track) {
     let playlist = this.state.playlistTracks;
-    const edited = playlist.filter(savedTrack => savedTrack.id !== track.id)
+    playlist = playlist.filter(savedTrack => savedTrack.id !== track.id)
     
-    this.setState({playlistTracks: edited})
+    this.setState({playlistTracks: playlist})
   }
 
   render () {
