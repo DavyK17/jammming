@@ -20,6 +20,7 @@ class App extends React.Component {
         {name: "name3", artist: "artist3", album: "album3", id: 3},
       ],
     };
+    this.addTrack = this.addTrack.bind(this);
   }
 
   addTrack(track) {
