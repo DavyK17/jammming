@@ -20,7 +20,11 @@ const Spotify = {
 
             return token;
         }
-    }
+    },
+    
+    search(term) {
+
+    },
 };
 
 export default Spotify;
