@@ -44,6 +44,14 @@ const Spotify = {
             console.log(error)
         }
     },
+
+    savePlaylist(name, URIs) {
+        if (!name || !URIs.length) return;
+
+        const accessToken = token;
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        let userID;
+    }
 };
 
 export default Spotify;
