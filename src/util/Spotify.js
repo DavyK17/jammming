@@ -16,6 +16,7 @@ const Spotify = {
 
             window.setTimeout(() => token = "", expiryTime * 1000);
             window.history.pushState("Access Token", null, "/");
+            window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
 
             return token;
         }
