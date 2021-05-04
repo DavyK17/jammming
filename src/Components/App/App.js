@@ -49,7 +49,7 @@ class App extends React.Component {
     let trackURIs = [];
     let playlist = this.state.playlistTracks;
 
-    for (let track in playlist) {
+    for (let track of playlist) {
       trackURIs.push(track.uri)
     }
   }
