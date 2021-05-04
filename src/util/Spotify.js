@@ -27,7 +27,7 @@ const Spotify = {
         const url = `https://api.spotify.com/v1/search?type=track&q=${term}`;
         
         try {
-            const response = await fetch(url, { headers: {Authorization: `Bearer ${accessToken}` } })
+            const response = await fetch(url, { headers: {Authorization: `Bearer ${accessToken}` } });
             if (response.ok) {
                     const jsonResponse = await response.json();
 
@@ -54,10 +54,21 @@ const Spotify = {
         const url = "https://api.spotify.com/v1/me";
         
         try {
-            const response = await fetch(url, { headers: headers })
+            const response = await fetch(url, { headers: headers });
             if (response.ok) {
                     const jsonResponse = await response.json();
                     userID = jsonResponse.id;
+                    const url = `https://api.spotify.com/v1/users/${userID}/playlists`
+
+                    try {
+                        const response = await fetch(url, { headers: headers, method: "POST", body: JSON.stringify({ name: name }) });
+                        if (response.ok) {
+                            const jsonResponse = await response.json();
+                            const playlistID = jsonResponse.id;
+                        }
+                    } catch(error) {
+                        console.log(error)
+                    }
             }
         } catch(error) {
             console.log(error)
