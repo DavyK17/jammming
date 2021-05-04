@@ -45,7 +45,7 @@ const Spotify = {
         }
     },
 
-    savePlaylist(name, URIs) {
+    async savePlaylist(name, URIs) {
         if (!name || !URIs.length) return;
 
         const accessToken = token;
