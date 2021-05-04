@@ -27,7 +27,7 @@ const Spotify = {
         const url = `https://api.spotify.com/v1/search?type=track&q=${term}`;
         
         try {
-            const response = await fetch(url, { headers: {Authorization: `Bearer ${token}` } })
+            const response = await fetch(url, { headers: {Authorization: `Bearer ${accessToken}` } })
             if (response.ok) {
                     const jsonResponse = await response.json();
 
