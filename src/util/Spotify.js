@@ -61,10 +61,29 @@ const Spotify = {
                     const url = `https://api.spotify.com/v1/users/${userID}/playlists`
 
                     try {
-                        const response = await fetch(url, { headers: headers, method: "POST", body: JSON.stringify({ name: name }) });
+                        const response = await fetch(url, {
+                            headers: headers,
+                            method: "POST",
+                            body: JSON.stringify({ name: name })
+                        });
                         if (response.ok) {
                             const jsonResponse = await response.json();
                             const playlistID = jsonResponse.id;
+                            const url = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
+
+                            try {
+                                const response = await fetch(url, {
+                                    headers: headers,
+                                    method: "POST",
+                                    body: JSON.stringify({ uris: URIs })
+                                });
+                                if (response.ok) {
+                                    const jsonResponse = await response.json();
+                                    console.log(jsonResponse);
+                                }
+                            } catch(error) {
+                                console.log(error);
+                            }
                         }
                     } catch(error) {
                         console.log(error)
