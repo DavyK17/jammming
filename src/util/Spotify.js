@@ -45,10 +45,11 @@ const Spotify = {
     
     async search(term) {
         const accessToken = Spotify.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
         const url = `https://api.spotify.com/v1/search?type=track&q=${term}`;
         
         try {
-            const response = await fetch(url, { headers: {Authorization: `Bearer ${accessToken}` } });
+            const response = await fetch(url, { headers: headers });
             if (response.ok) {
                     const jsonResponse = await response.json();
 
