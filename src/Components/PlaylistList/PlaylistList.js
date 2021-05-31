@@ -1,6 +1,6 @@
 import React from "react";
-import Spotify from '../../util/Spotify';
 import { PlaylistListItem } from "../PlaylistListItem/PlaylistListItem";
+import "./PlaylistList.css";
 
 export class PlaylistList extends React.Component {
     constructor(props) {
@@ -19,12 +19,9 @@ export class PlaylistList extends React.Component {
     render() {
         return (
             <div className="PlaylistList">
+                <h2>Local Playlists</h2>
                 {this.mapItems()}
             </div>
         );
-    }
-
-    componentDidMount() {
-        Spotify.getUserPlaylists().then(playlists => this.setState({ playlists: playlists }));   
     }
 }

@@ -6,7 +6,7 @@ export class PlaylistListItem extends React.Component {
         return (
             <div className="Item">
                 <div className="Item-information">
-                    <h3>{this.props.item.name}</h3>
+                    <h3>{this.props.name}</h3>
                 </div>
             </div>
         );
