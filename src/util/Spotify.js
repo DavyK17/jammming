@@ -1,4 +1,5 @@
 let token;
+let userID;
 
 const clientID = "e8d73ef03a7948cab3869877d18d0777";
 const redirectURI = "http://dvk-jammming.surge.sh/";
@@ -20,6 +21,25 @@ const Spotify = {
             return token;
         } else {
             window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+        }
+    },
+    
+    async getCurrentUserId() {
+        if (userID) return userID;
+
+        const accessToken = Spotify.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        const url = "https://api.spotify.com/v1/me";
+        
+        try {
+            const response = await fetch(url, { headers: headers });
+            if (response.ok) {
+                    const jsonResponse = await response.json();
+                    userID = jsonResponse.id;
+                    return userID;
+            }
+        } catch(error) {
+                console.log(error);
         }
     },
     
@@ -49,17 +69,10 @@ const Spotify = {
     async savePlaylist(name, URIs) {
         if (!name || !URIs.length) return;
 
-        const accessToken = token;
+        const accessToken = Spotify.getAccessToken();
         const headers = { Authorization: `Bearer ${accessToken}` };
-        let userID;
-        const url = "https://api.spotify.com/v1/me";
-        
-        try {
-            const response = await fetch(url, { headers: headers });
-            if (response.ok) {
-                    const jsonResponse = await response.json();
-                    userID = jsonResponse.id;
-                    const url = `https://api.spotify.com/v1/users/${userID}/playlists`
+        const currentUser = await Spotify.getCurrentUserId();
+        const url = `https://api.spotify.com/v1/users/${currentUser}/playlists`;
 
                     try {
                         const response = await fetch(url, {
@@ -89,11 +102,7 @@ const Spotify = {
                     } catch(error) {
                         console.log(error)
                     }
-            }
-        } catch(error) {
-            console.log(error)
-        }
-    }
+    },
 };
 
 export default Spotify;
