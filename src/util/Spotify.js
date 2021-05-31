@@ -126,7 +126,24 @@ const Spotify = {
         } catch(error) {
             console.log(error);
         }
-    }
+    },
+
+    async getPlaylist(id) {
+        const accessToken = Spotify.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        const url = `https://api.spotify.com/v1/playlists/${id}`;
+
+        try {
+            const response = await fetch(url, { headers: headers });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+                return jsonResponse;
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    },
 };
 
 export default Spotify;
