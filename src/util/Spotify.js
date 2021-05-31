@@ -109,7 +109,7 @@ const Spotify = {
         const accessToken = Spotify.getAccessToken();
         const headers = { Authorization: `Bearer ${accessToken}` };
         const currentUser = await Spotify.getCurrentUserId();
-        const url = `https://api.spotify.com/v1/users/${currentUser}/playlists`;
+        const url = `https://api.spotify.com/v1/users/${currentUser}/playlists?limit=50`;
 
         try {
             const response = await fetch(url, { headers: headers });
