@@ -104,6 +104,29 @@ const Spotify = {
                         console.log(error)
                     }
     },
+
+    async getUserPlaylists() {
+        const accessToken = Spotify.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        const currentUser = await Spotify.getCurrentUserId();
+        const url = `https://api.spotify.com/v1/users/${currentUser}/playlists`;
+
+        try {
+            const response = await fetch(url, { headers: headers });
+            if(response.ok) {
+                const jsonResponse = await response.json();
+
+                if(!jsonResponse.items) return [];
+                return jsonResponse.items.map(playlist => ({
+                    id: playlist.id,
+                    name: playlist.name
+                }));
+            }
+
+        } catch(error) {
+            console.log(error);
+        }
+    }
 };
 
 export default Spotify;
