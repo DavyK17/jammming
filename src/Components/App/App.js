@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchResults: [],
+      playlistID: null,
       playlistName: "New Playlist",
       playlistTracks: [],
       playlists: []
@@ -44,8 +45,8 @@ class App extends React.Component {
 
   savePlaylist() {
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
-      this.setState({ playlistName: "New Playlist", playlistTracks: [] });
+    Spotify.savePlaylist(this.state.playlistName, trackURIs, this.state.playlistID).then(() => {
+      this.setState({ playlistID: null, playlistName: "New Playlist", playlistTracks: [] });
     });
   }
 
@@ -63,7 +64,7 @@ class App extends React.Component {
         uri: item.track.uri
       }));
       
-      this.setState({ playlistName: response.name, playlistTracks: playlistTracks })
+      this.setState({ playlistID: id, playlistName: response.name, playlistTracks: playlistTracks })
     })
   }
 
