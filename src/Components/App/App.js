@@ -2,6 +2,7 @@ import React from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { SearchResults } from "../SearchResults/SearchResults";
 import { Playlist } from "../Playlist/Playlist";
+import { PlaylistList } from "../PlaylistList/PlaylistList";
 import './App.css';
 import Spotify from '../../util/Spotify';
 
@@ -12,6 +13,7 @@ class App extends React.Component {
       searchResults: [],
       playlistName: "New Playlist",
       playlistTracks: [],
+      playlists: []
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -47,9 +49,7 @@ class App extends React.Component {
   }
 
   search(term) {
-    Spotify.search(term).then(results => {
-      this.setState({searchResults: results})
-    });
+    Spotify.search(term).then(results => this.setState({searchResults: results}));
   }
 
   render () {
@@ -62,9 +62,16 @@ class App extends React.Component {
                 <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
                 <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
               </div>
+              <div className="App-playlist">
+                <PlaylistList items={this.state.playlists} />
+              </div>
           </div>
       </div>
     );
+  }
+  
+  componentDidMount() {
+    Spotify.getUserPlaylists().then(playlists => this.setState({ playlists: playlists }));   
   }
 }
 
