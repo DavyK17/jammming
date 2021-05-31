@@ -11,7 +11,7 @@ export class PlaylistList extends React.Component {
     mapItems() {
         if(this.props.items) {
             return this.props.items.map(item => {
-                return <PlaylistListItem name={item.name} key={item.id} />
+                return <PlaylistListItem key={item.id} id={item.id} name={item.name} selectPlaylist={this.props.selectPlaylist} />
             });
         }
     }
