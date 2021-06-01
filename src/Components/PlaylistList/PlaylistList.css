@@ -1,13 +1,20 @@
 .PlaylistList {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    min-height: 300px;
     max-height: 950px;
-    overflow-y: scroll;
     background-color: rgba(1, 12, 63, 0.7);
     box-shadow: 0 4px 2px 2px #000000;
 }
 
 .PlaylistList h2 {
-    padding: .88rem;
+    padding: 0 .88rem;
+}
+
+.PlaylistListContainer {
+    width: 100%;
+    overflow-y: scroll;
 }
 
  ::-webkit-scrollbar {

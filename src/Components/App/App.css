@@ -43,6 +43,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin: 1.16rem auto;
 }
 
 @media only screen and (max-width: 1020px) {
