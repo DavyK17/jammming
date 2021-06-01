@@ -20,7 +20,9 @@ export class PlaylistList extends React.Component {
         return (
             <div className="PlaylistList">
                 <h2>Created Playlists</h2>
-                {this.mapItems()}
+                <div className="PlaylistListContainer">
+                    {this.mapItems()}
+                </div>
             </div>
         );
     }
