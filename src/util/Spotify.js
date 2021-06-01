@@ -20,7 +20,8 @@ const Spotify = {
 
             return token;
         } else {
-            window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+            const scopes = "playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private";
+            window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=${encodeURIComponent(scopes)}&redirect_uri=${redirectURI}`;
         }
     },
     
@@ -147,7 +148,9 @@ const Spotify = {
                 const jsonResponse = await response.json();
 
                 if(!jsonResponse.items) return [];
-                return jsonResponse.items.map(playlist => ({
+                
+                const ownedPlaylists = jsonResponse.items.filter(item => item.owner.id === currentUser);
+                return ownedPlaylists.map(playlist => ({
                     id: playlist.id,
                     name: playlist.name
                 }));
