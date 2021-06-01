@@ -23,6 +23,9 @@ export class PlaylistList extends React.Component {
                 <div className="PlaylistListContainer">
                     {this.mapItems()}
                 </div>
+                <div className="Refresh-container">    
+                    <button className="Playlist-save" onClick={this.props.refresh}>REFRESH</button>
+                </div>
             </div>
         );
     }
