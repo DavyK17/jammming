@@ -1,7 +1,7 @@
 .SearchResults {
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: 100%;
     min-height: 300px;
     max-height: 500px;
     padding: .88rem;
@@ -14,9 +14,10 @@
     background: transparent;
 }
 
-@media only screen and (max-width: 1020px) {
+
+/* @media only screen and (max-width: 1020px) {
     .SearchResults {
         width: 90%;
         margin-bottom: 2rem;
     }
-}
+} */
