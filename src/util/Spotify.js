@@ -148,7 +148,7 @@ const Spotify = {
                 const jsonResponse = await response.json();
 
                 if(!jsonResponse.items) return [];
-                
+
                 const ownedPlaylists = jsonResponse.items.filter(item => item.owner.id === currentUser);
                 return ownedPlaylists.map(playlist => ({
                     id: playlist.id,
