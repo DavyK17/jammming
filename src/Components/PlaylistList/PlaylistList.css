@@ -17,6 +17,13 @@
     overflow-y: scroll;
 }
 
+.Refresh-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem auto;
+}
+
  ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
