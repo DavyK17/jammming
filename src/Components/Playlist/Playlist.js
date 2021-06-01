@@ -17,7 +17,11 @@ export class Playlist extends React.Component {
             <div className="Playlist">
                 <input value={this.props.playlistName} onChange={this.handleNameChange} />
                 <TrackList tracks={this.props.playlistTracks} onRemove={this.props.onRemove} isRemoval={true} />
-                <button className="Playlist-save" onClick={this.props.onSave}>SAVE TO SPOTIFY</button>
+                <div className="Save-buttons">  
+                    <button className="Playlist-save" onClick={this.props.onClear}>CLEAR</button>  
+                    <button className="Playlist-save" onClick={this.props.onSave}>SAVE</button>
+                    <button className="Playlist-save" onClick={this.props.onSaveNew}>SAVE AS NEW</button>
+                </div>
             </div>
         );
     }
