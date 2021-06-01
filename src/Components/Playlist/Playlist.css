@@ -22,16 +22,22 @@
     color: #fff;
 }
 
+.Save-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
 .Playlist-save {
     cursor: pointer;
-    width: 10rem;
+    width: 7.5rem;
     padding: .77rem 0;
     border-radius: 54px;
     border-width: 0px;
     margin-top: 1.27rem;
     background-color: #6c41ec;
     text-align: center;
-    font-size: .83rem;
+    font-size: .8rem;
     transition: background-color .25s;
     color: #fff;
     font-weight: 500;
@@ -46,9 +52,12 @@
     background: transparent;
 }
 
-
-/* @media only screen and (max-width: 1020px) {
-    .Playlist {
+@media only screen and (max-width: 1020px) {
+    /* .Playlist {
         width: 90%;
+    } */
+    .Save-buttons {
+        flex-direction: column;
+        align-items: center;
     }
-} */
+}
